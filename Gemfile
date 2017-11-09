@@ -40,6 +40,8 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'factory_bot_rails'
   gem 'rspec-rails'
+  gem 'shoulda-matchers'
+  gem 'database_cleaner' 
 end
 
 group :development do
