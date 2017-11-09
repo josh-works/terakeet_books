@@ -6,4 +6,8 @@ RSpec.describe Publisher, type: :model do
   describe "attributes" do
     it {expect(publisher).to respond_to(:title)}
   end
+
+  describe "relationships" do
+    it { should have_many(:books)}
+  end
 end

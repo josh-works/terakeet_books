@@ -6,4 +6,8 @@ RSpec.describe Book, type: :model do
   describe "attributes" do
     it {expect(book).to respond_to(:title)}
   end
+
+  describe "relationships" do
+    it { should belong_to(:publisher) }
+  end
 end
