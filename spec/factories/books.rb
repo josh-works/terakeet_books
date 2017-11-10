@@ -3,5 +3,6 @@ FactoryBot.define do
     title Faker::Book.title
     publisher
     author
+    
   end
 end
