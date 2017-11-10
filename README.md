@@ -20,3 +20,13 @@ I'll be writing just the `book` model, but I would obviously have lots of room t
 ### step 1
 
 Obviously the `Book::search()` will be the more interesting method, but to get there, and get there well, I'd like to have the model well-defined, as well as some factories set up that tests all aspects of the relationships.
+
+I've set up all of the migrations, models, factories, and tests for:
+
+- authors
+- book_format_types
+- book_formats
+- books
+- publishers
+
+and built a small seed file for all of these. 

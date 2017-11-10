@@ -4,14 +4,17 @@ class Seed
     p "starting seed generation"
     seed = Seed.new
     seed.reset_data
+    seed.generate_book_format_types
     seed.generate_publishers
     seed.generate_authors
   end
 
   def reset_data
+    BookFormat.destroy_all
     Book.destroy_all
     Publisher.destroy_all
     Author.destroy_all
+    BookFormatType.destroy_all
     p "deleted books, publishers, and authors"
   end
 
@@ -36,11 +39,30 @@ class Seed
 
 
   def make_book(author)
-    author.books.create!(
+    book = author.books.create!(
       title: Faker::Book.title,
       publisher: Publisher.last
     )
+    make_book_formats(book)
   end
+
+  def generate_book_format_types
+    p "making book format types"
+    4.times do |i|
+      BookFormatType.create!(
+        name: ["Hardcover","Softcover","Kindle","PDF"].shuffle.pop,
+        physical: true
+      )
+      p "made #{BookFormatType.last.name}"
+    end
+  end
+
+  def make_book_formats(book)
+    # binding.pry
+    book.book_format_types.push(BookFormatType.all.shuffle.first)
+    p "made #{book.book_format_types.name}"
+  end
+
 end
 
 Seed.start
