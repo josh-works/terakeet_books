@@ -17,7 +17,7 @@ This is the schema I put together, based on the instructions:
 I'll be writing just the `book` model, but I would obviously have lots of room to explore and define the relationships between existing models in the codebase and the new one I was working on. Unless instructed otherwise, I'd drop in a few unit and feature tests that pass before I even started writing new code. Those would help serve as guardrails to make sure I didn't cause problems elsewhere. I'd timebox this "guardrail code" to just an hour or so, though. A small investment.
 
 
-### step 1
+### step 1 - 5-ish
 
 Obviously the `Book::search()` will be the more interesting method, but to get there, and get there well, I'd like to have the model well-defined, as well as some factories set up that tests all aspects of the relationships.
 
@@ -29,4 +29,6 @@ I've set up all of the migrations, models, factories, and tests for:
 - books
 - publishers
 
-and built a small seed file for all of these. 
+and built a small seed file for all of these: `$ rake db:seed` will give you objects to play with in the console.
+
+### Step 6
