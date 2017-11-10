@@ -9,6 +9,8 @@ RSpec.describe Book, type: :model do
 
   describe "relationships" do
     it { should belong_to(:publisher) }
+    it { should have_many(:book_formats)}
+    it { should have_many(:book_format_types).through(:book_formats)}
   end
 
   describe "validations" do
