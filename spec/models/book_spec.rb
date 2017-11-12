@@ -33,8 +33,21 @@ RSpec.describe Book, type: :model do
   describe "#author_name" do
     it "should return author's name in 'lastname, firstname' format" do
       book = create(:book)
-      author_name = "#{book.author.last_name}, #{book.author.last_name}"
+      author_name = "#{book.author.last_name}, #{book.author.first_name}"
       expect(book.author_name).to eq(author_name)
+    end
+  end
+
+  describe "#average_rating" do
+    it "should return mean of all book reviews of book to one decimal" do
+      book = create(:book)
+      4.times do |i|
+        BookReview.create!(
+          book_id: book.id,
+          rating: i
+        )
+      end
+      expect(book.average_rating).to eq(1.5)
     end
   end
 
