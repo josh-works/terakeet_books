@@ -21,7 +21,14 @@ RSpec.describe Book, type: :model do
 
   describe "#book_format_types" do
     it "should return collection of book_format_types" do
-      # book = create(:book_with_formats)
+      book = create(:book)
+      binding.pry
+      3.times do |i|
+        BookFormatType.create!(
+          book_id: book.id,
+          name: ["Hardcover","Softcover","Kindle","PDF"].pop
+        )
+      end
       # book = create(:book)
       # formats = create(:book_format_types)
       # formats = several book formats
