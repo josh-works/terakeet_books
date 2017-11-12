@@ -19,5 +19,24 @@ RSpec.describe Book, type: :model do
     it {should validate_presence_of(:publisher_id)}
   end
 
-  
+  describe "#book_format_types" do
+    it "should return collection of book_format_types" do
+      # book = create(:book_with_formats)
+      # book = create(:book)
+      # formats = create(:book_format_types)
+      # formats = several book formats
+      # book.formats.push[formats]
+      # expect(book.book_format_types).to eq(formats)
+    end
+  end
+
+  describe "#author_name" do
+    it "should return author's name in 'lastname, firstname' format" do
+      book = create(:book)
+      author_name = "#{book.author.last_name}, #{book.author.last_name}"
+      expect(book.author_name).to eq(author_name)
+    end
+  end
+
+
 end

@@ -13,4 +13,9 @@ class Book < ApplicationRecord
 
   has_many :book_reviews
 
+
+  def author_name
+    "#{self.author.last_name}, #{self.author.last_name}"
+  end
+
 end
