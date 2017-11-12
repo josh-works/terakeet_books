@@ -22,18 +22,23 @@ RSpec.describe Book, type: :model do
   describe "#book_format_types" do
     it "should return collection of book_format_types" do
       book = create(:book)
-      binding.pry
-      3.times do |i|
+      2.times do |i|
         BookFormatType.create!(
-          book_id: book.id,
-          name: ["Hardcover","Softcover","Kindle","PDF"].pop
+          name: ["Hardcover","Softcover"][i]
         )
       end
-      # book = create(:book)
-      # formats = create(:book_format_types)
-      # formats = several book formats
-      # book.formats.push[formats]
-      # expect(book.book_format_types).to eq(formats)
+
+      BookFormat.create!(
+        book_id: book.id,
+        book_format_type_id: BookFormatType.first.id
+      )
+      BookFormat.create!(
+        book_id: book.id,
+        book_format_type_id: BookFormatType.last.id
+      )
+
+      expect(book.book_format_types.count).to eq(2)
+      expect(book.book_format_types.pluck(:name)).to include("Hardcover", "Softcover")
     end
   end
 

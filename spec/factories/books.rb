@@ -4,5 +4,5 @@ FactoryBot.define do
     publisher
     author
   end
-
+  
 end
