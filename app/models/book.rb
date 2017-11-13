@@ -22,11 +22,13 @@ class Book < ApplicationRecord
     self.book_reviews.average(:rating)
   end
 
-  def self.search(args)
+  def self.search(query, options = nil)
+    search_by_author(query)
+  end
 
-    Book.select('*')
-        .joins(:author)
-        .where('authors.last_name' => args)
+  def self.search_by_author(author_name)
+    Book.joins(:author)
+        .where('authors.last_name ILIKE ?', author_name)
   end
 
 end
