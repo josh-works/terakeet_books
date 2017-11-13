@@ -22,13 +22,32 @@ class Book < ApplicationRecord
     self.book_reviews.average(:rating)
   end
 
-  def self.search(query, options = nil)
+  def self.search(query, options = {})
+    return self.search_by_title(query) if options.has_key?(:title_only)
+    
+    parse_options(options)
     search_by_author(query)
+  end
+
+  def self.parse_options(options)
+    # binding.pry
+    if options != nil
+      # do something
+    end
   end
 
   def self.search_by_author(author_name)
     Book.joins(:author)
         .where('authors.last_name ILIKE ?', author_name)
+  end
+
+  def self.search_by_publisher(publisher_name)
+    Book.joins(:publisher)
+        .where('publishers.title ILIKE ?', publisher_name)
+  end
+
+  def self.search_by_title(title)
+    Book.where("title ILIKE ?", "%#{title}%")
   end
 
 end
