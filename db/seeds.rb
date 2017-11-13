@@ -10,6 +10,7 @@ class Seed
   end
 
   def reset_data
+    BookReview.destroy_all
     BookFormat.destroy_all
     Book.destroy_all
     Publisher.destroy_all
@@ -44,13 +45,15 @@ class Seed
       publisher: Publisher.last
     )
     make_book_formats(book)
+    make_review(book)
   end
 
   def generate_book_format_types
     p "making book format types..."
+    formats = ["Hardcover","Softcover","Kindle","PDF"]
     4.times do |i|
       BookFormatType.create!(
-        name: ["Hardcover","Softcover","Kindle","PDF"].shuffle.pop,
+        name: formats.pop,
         physical: true
       )
       p "made #{BookFormatType.last.name}"
@@ -65,7 +68,12 @@ class Seed
   def make_review(book)
     p "making reviews..."
     rand(5).times do |i|
-      book.book_reviews.push(BookReview.create!)
+      review = BookReview.create!(
+        book_id: book.id,
+        rating: (1..5).to_a.sample
+      )
+
+      "made review for #{book.title} of #{review.rating}"
     end
   end
 

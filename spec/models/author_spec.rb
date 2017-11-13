@@ -16,4 +16,13 @@ RSpec.describe Author, type: :model do
     it { should validate_presence_of(:first_name)}
     it { should validate_presence_of(:last_name)}
   end
+
+  describe "#name" do
+      it "should concat first_name and last_name" do
+      author = create(:author)
+      name = "#{author.first_name} #{author.last_name}"
+
+      expect(author.name).to eq(name)
+    end
+  end
 end

@@ -3,4 +3,5 @@ FactoryBot.define do
     rating (1..5).to_a.sample
     book
   end
+  
 end
