@@ -50,9 +50,10 @@ class Seed
 
   def generate_book_format_types
     p "making book format types..."
+    formats = ["Hardcover","Softcover","Kindle","PDF"]
     4.times do |i|
       BookFormatType.create!(
-        name: ["Hardcover","Softcover","Kindle","PDF"].shuffle.pop,
+        name: formats.pop,
         physical: true
       )
       p "made #{BookFormatType.last.name}"
@@ -71,7 +72,7 @@ class Seed
         book_id: book.id,
         rating: (1..5).to_a.sample
       )
-      
+
       "made review for #{book.title} of #{review.rating}"
     end
   end

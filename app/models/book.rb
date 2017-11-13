@@ -19,9 +19,14 @@ class Book < ApplicationRecord
   end
 
   def average_rating
-    total = self.book_reviews.pluck(:rating).reduce(:+)
-    count = self.book_reviews.count
-    (total.to_f / count).round(1)
+    self.book_reviews.average(:rating)
+  end
+
+  def self.search(args)
+    binding.pry
+    Book.select('*')
+        .joins(:authors)
+        .find_by('authors.name' => args)
   end
 
 end

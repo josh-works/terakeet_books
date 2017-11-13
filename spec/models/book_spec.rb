@@ -62,6 +62,5 @@ RSpec.describe Book, type: :model do
       expect(book.average_rating).to eq(1.5)
     end
   end
-
-
+  
 end

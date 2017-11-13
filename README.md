@@ -46,4 +46,4 @@ It didn't require any methods in the `book` model, even though I wrote a test fo
 
 ### Step 7 Book::search
 
-`Book::search(query, options)`
+`Book::search(query, options)` =>
