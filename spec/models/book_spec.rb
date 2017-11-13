@@ -8,6 +8,7 @@ RSpec.describe Book, type: :model do
   end
 
   describe "relationships" do
+    it { should belong_to(:author)}
     it { should belong_to(:publisher) }
     it { should have_many(:book_formats)}
     it { should have_many(:book_format_types).through(:book_formats)}
@@ -62,5 +63,5 @@ RSpec.describe Book, type: :model do
       expect(book.average_rating).to eq(1.5)
     end
   end
-  
+
 end

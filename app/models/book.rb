@@ -23,10 +23,10 @@ class Book < ApplicationRecord
   end
 
   def self.search(args)
-    binding.pry
+
     Book.select('*')
-        .joins(:authors)
-        .find_by('authors.name' => args)
+        .joins(:author)
+        .where('authors.last_name' => args)
   end
 
 end
